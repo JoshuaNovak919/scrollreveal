@@ -136,6 +136,19 @@
       'transition' in style && 'transform' in style
   }
 
+  ScrollReveal.prototype.destroy = function() {
+    if ( sr.initialized ){
+      for ( var i = 0; i < sr.store.containers.length; i++ ){
+        sr.store.containers[ i ].removeEventListener( 'scroll', _handler );
+        sr.store.containers[ i ].removeEventListener( 'resize', _handler );
+      }
+      window.removeEventListener( 'scroll', _handler );
+      window.removeEventListener( 'resize', _handler );
+      sr.initialized = false;
+    }
+    return sr;
+  }
+
   /**
    * Creates a reveal set, a group of elements that will animate when they
    * become visible. If [interval] is provided, a new sequence is created
