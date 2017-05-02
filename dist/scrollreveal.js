@@ -144,6 +144,7 @@
       }
       window.removeEventListener( 'scroll', _handler );
       window.removeEventListener( 'resize', _handler );
+      $('[data-sr-id]').removeAttr('style').removeAttr('data-sr-id');
       sr.initialized = false;
     }
     return sr;
